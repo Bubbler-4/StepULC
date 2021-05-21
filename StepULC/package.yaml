@@ -1,0 +1,63 @@
+name:                StepULC
+version:             0.1.0.0
+github:              "Bubbler-4/StepULC"
+license:             MIT
+author:              "Bubbler-4"
+maintainer:          "bubbler9903@gmail.com"
+copyright:           "2021 Bubbler-4"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/Bubbler-4/StepULC#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- deepseq
+
+library:
+  source-dirs: src
+
+executables:
+  StepULC-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - StepULC
+
+tests:
+  StepULC-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - StepULC
+    - HUnit
+
+benchmarks:
+  StepULC-benchmark:
+    main: Main.hs
+    source-dirs: benchmark
+    ghc-options:
+    - -O2
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - StepULC
+    - criterion
