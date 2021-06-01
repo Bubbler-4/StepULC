@@ -228,6 +228,6 @@ semantic3 e = reduce e False env0 (Kend' []) where
     reduce (App e1 e2) flag env cont = reduce e1 True env (Kapp' e2 flag env [] cont)
     -- apk e cont env
     apk e (Kend' f) env = realize f e
-    apk e (Kapp' e' flag env' f cont) env = case realize f e of
+    apk e (Kapp' e' flag env' f cont) env = case e of
         Lam e'' -> reduce e'' flag (Bound' e' env' 0 : env) cont
-        v -> reduce e' False env' (transform (AppTok v) cont)
+        v -> reduce e' False env' (transform (AppTok $ realize f e) cont)
